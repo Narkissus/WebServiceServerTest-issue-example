@@ -1,9 +1,11 @@
 package com.example.demo.endpoint;
 
+import com.example.demo.config.WebserviceConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.webservices.server.WebServiceServerTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 import org.springframework.ws.soap.security.wss4j2.Wss4jSecurityInterceptor;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.xml.transform.StringSource;
@@ -12,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.ws.test.server.RequestCreators.withSoapEnvelope;
 import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
-// All the tests fail, because interceptors are not present in the application context
-@WebServiceServerTest(HelloWorldEndpoint.class)
+@WebServiceServerTest
+@Import(WebserviceConfiguration.class)
 class HelloWorldEndpointTest {
 
     @Autowired
